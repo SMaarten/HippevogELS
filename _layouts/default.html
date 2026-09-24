@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.url != "/" %}{{ page.title }} · {% endif %}{{ site.title }} — {{ site.tagline }}</title>
+  <meta name="description" content="{{ page.beschrijving | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ site.description | strip_newlines }}">
+  {% if page.foto %}<meta property="og:image" content="{{ page.foto | absolute_url }}">{% endif %}
+  <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/stijl.css' | relative_url }}">
+</head>
+<body data-base="{{ site.baseurl }}">
+  <a class="skip" href="#inhoud">Naar de inhoud</a>
+  <header class="kop">
+    <div class="kop-binnen">
+      <a class="logo" href="{{ '/' | relative_url }}" aria-label="Hippe vogELS — home">
+        <svg class="logo-vogel" viewBox="0 0 40 28" aria-hidden="true"><path d="M2 20 L14 8 L22 16 L38 2 L30 22 L20 14 L10 26 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span>Hippe vog<strong>ELS</strong></span>
+      </a>
+      <nav class="menu" aria-label="Hoofdmenu">
+        <a href="{{ '/winkel/' | relative_url }}" {% if page.url contains '/winkel' %}aria-current="page"{% endif %}>Winkel</a>
+        <a href="{{ '/over/' | relative_url }}" {% if page.url == '/over/' %}aria-current="page"{% endif %}>Over Els</a>
+        <a class="mandje-link" href="{{ '/mandje/' | relative_url }}" {% if page.url == '/mandje/' %}aria-current="page"{% endif %}>
+          Mandje <span class="mandje-teller" data-teller hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhoud">
+    {{ content }}
+  </main>
+
+  <footer class="voet">
+    <div class="voet-binnen">
+      <div>
+        <p class="voet-logo">Hippe vog<strong>ELS</strong></p>
+        <p>Handgemaakte juwelen door {{ site.data.winkel.eigenaar }}.<br>Elk stuk is uniek.</p>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <p><a href="mailto:{{ site.data.winkel.email }}">{{ site.data.winkel.email }}</a><br>
+        <a href="https://www.instagram.com/{{ site.data.winkel.instagram }}/" rel="noopener">Instagram @{{ site.data.winkel.instagram }}</a></p>
+      </div>
+      <div>
+        <h2>Bestellen</h2>
+        <p><a href="{{ '/bestellen/' | relative_url }}">Zo werkt bestellen</a><br>
+        Verzending in België: € {{ site.data.winkel.verzendkosten | times: 1.0 | round: 2 | replace: '.', ',' }}{% if site.data.winkel.gratis_verzending_vanaf > 0 %}, gratis vanaf € {{ site.data.winkel.gratis_verzending_vanaf }}{% endif %}</p>
+      </div>
+    </div>
+    <p class="voet-klein">© {{ 'now' | date: '%Y' }} {{ site.title }}</p>
+  </footer>
+
+  <script>window.WINKEL = {{ site.data.winkel | jsonify }};</script>
+  <script src="{{ '/assets/js/winkel.js' | relative_url }}" defer></script>
+</body>
+</html>

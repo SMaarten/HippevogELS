@@ -1,0 +1,49 @@
+---
+layout: default
+---
+{%- assign p = page -%}
+{%- assign fotos = p.fotos | default: empty -%}
+<div class="wrap product">
+  <nav class="kruimel" aria-label="Kruimelpad"><a href="{{ '/winkel/' | relative_url }}">Winkel</a> <span aria-hidden="true">/</span> {{ p.categorie | capitalize }}</nav>
+  <div class="product-grid">
+    <div class="galerij">
+      <div class="galerij-hoofd{% if p.status == 'verkocht' %} is-verkocht{% endif %}">
+        <img id="hoofdfoto" src="{{ p.foto | relative_url }}" alt="{{ p.title }}" width="900" height="900">
+        {% if p.status == 'verkocht' %}<span class="lint lint-verkocht lint-groot">SOLD</span>{% endif %}
+      </div>
+      {% if fotos.size > 0 %}
+      <div class="galerij-duimen">
+        <button type="button" class="duim is-actief" data-foto="{{ p.foto | relative_url }}"><img src="{{ p.foto | relative_url }}" alt="" loading="lazy"></button>
+        {% for f in fotos %}<button type="button" class="duim" data-foto="{{ f | relative_url }}"><img src="{{ f | relative_url }}" alt="" loading="lazy"></button>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <p class="product-cat">{{ p.categorie | capitalize }}</p>
+      <h1>{{ p.title }}</h1>
+      <p class="product-prijs">{% include prijs.html bedrag=p.prijs %}</p>
+
+      {% if p.status == 'verkocht' %}
+        <p class="melding melding-verkocht"><strong>Verkocht.</strong> Dit unieke stuk heeft een nieuwe eigenaar gevonden. Iets gelijkaardigs op maat? <a href="mailto:{{ site.data.winkel.email }}?subject={{ 'Vraag over ' | append: p.title | url_encode }}">Stuur Els een berichtje</a>.</p>
+      {% elsif p.status == 'gereserveerd' %}
+        <p class="melding">Dit stuk is momenteel gereserveerd.</p>
+      {% elsif p.prijs %}
+        <button class="knop knop-groot" type="button" data-toevoegen
+          data-id="{{ p.slug }}" data-titel="{{ p.title | escape }}" data-prijs="{{ p.prijs }}"
+          data-foto="{{ p.foto | relative_url }}" data-url="{{ p.url | relative_url }}">In mijn mandje</button>
+        <p class="klein">Uniek exemplaar — er is er maar één van.</p>
+      {% else %}
+        <a class="knop knop-groot" href="mailto:{{ site.data.winkel.email }}?subject={{ 'Interesse in ' | append: p.title | url_encode }}">Vraag de prijs</a>
+      {% endif %}
+
+      <div class="product-tekst">{{ content }}</div>
+
+      <ul class="product-feiten">
+        <li>Handgemaakt in België</li>
+        <li>Verzending in een cadeauzakje</li>
+        {% if p.categorie == 'oorbellen' %}<li>Hypoallergene oorhaakjes</li>{% endif %}
+      </ul>
+    </div>
+  </div>
+</div>

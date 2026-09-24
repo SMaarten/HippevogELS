@@ -1,0 +1,14 @@
+{%- assign p = include.product -%}
+<article class="kaart{% if p.status == 'verkocht' %} is-verkocht{% endif %}" data-categorie="{{ p.categorie }}" data-status="{{ p.status }}">
+  <a href="{{ p.url | relative_url }}" class="kaart-link">
+    <div class="kaart-foto">
+      <img src="{{ p.foto | relative_url }}" alt="{{ p.title }}" loading="lazy" width="600" height="600">
+      {% if p.status == 'verkocht' %}<span class="lint lint-verkocht">SOLD</span>
+      {% elsif p.status == 'gereserveerd' %}<span class="lint lint-gereserveerd">Gereserveerd</span>{% endif %}
+    </div>
+    <div class="kaart-tekst">
+      <h3>{{ p.title }}</h3>
+      <p class="kaart-prijs">{% if p.status == 'verkocht' %}Verkocht{% else %}{% include prijs.html bedrag=p.prijs %}{% endif %}</p>
+    </div>
+  </a>
+</article>

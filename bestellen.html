@@ -1,0 +1,19 @@
+---
+title: Zo werkt bestellen
+permalink: /bestellen/
+---
+<div class="wrap blok smal">
+  <h1>Zo werkt bestellen</h1>
+  <ol class="stappen">
+    <li><strong>Kies je juweel</strong> en leg het in je mandje.</li>
+    <li><strong>Verstuur je bestelling</strong> met je naam, e-mailadres en leveringswijze.</li>
+    <li><strong>Els bevestigt</strong> binnen 1–2 dagen dat je stuk nog beschikbaar is en stuurt de betaalgegevens.</li>
+    <li><strong>Betaal via overschrijving</strong>{% if site.data.winkel.iban != "" %} op {{ site.data.winkel.iban }}{% endif %}. Zodra de betaling binnen is, wordt je juweel verzonden of kan je het afhalen.</li>
+  </ol>
+  <h2>Verzending</h2>
+  <p>Verzending binnen België kost € {{ site.data.winkel.verzendkosten | replace: '.', ',' }}{% if site.data.winkel.gratis_verzending_vanaf > 0 %} en is gratis vanaf € {{ site.data.winkel.gratis_verzending_vanaf }}{% endif %}.{% if site.data.winkel.afhalen_mogelijk %} Afhalen kan ook: {{ site.data.winkel.afhaaladres }}.{% endif %}</p>
+  <h2>Waarom geen directe betaling?</h2>
+  <p>Elk stuk is uniek. Door eerst te bevestigen, ben je zeker dat niemand anders jouw juweel tegelijk koopt.</p>
+  <h2>Retour</h2>
+  <p>Niet tevreden? Je hebt 14 dagen herroepingsrecht. Stuur het juweel onbeschadigd terug en je krijgt je geld terug (oorbellen enkel indien ongedragen, om hygiënische redenen).</p>
+</div>

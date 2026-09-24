@@ -1,0 +1,6 @@
+{%- if include.bedrag and include.bedrag != "" -%}
+{%- assign c = include.bedrag | times: 100 | round -%}
+{%- assign e = c | divided_by: 100 -%}
+{%- assign ct = c | modulo: 100 -%}
+€&nbsp;{{ e }}{% if ct != 0 %},{% if ct < 10 %}0{% endif %}{{ ct }}{% endif %}
+{%- else -%}Prijs op aanvraag{%- endif -%}

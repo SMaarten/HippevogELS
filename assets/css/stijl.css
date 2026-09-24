@@ -1,0 +1,202 @@
+/* Hippe vogELS — stijl */
+:root {
+  --papier: #f5f0e8;
+  --papier-2: #ece4d6;
+  --inkt: #26221e;
+  --inkt-zacht: #5e554c;
+  --messing: #a9843a;
+  --messing-donker: #7d5f22;
+  --leisteen: #3b3f45;
+  --groen: #4f6b58;
+  --rood: #b0412e;
+  --lijn: #d9cfbf;
+  --wit: #fffdf9;
+  --radius: 4px;
+  --breed: 1180px;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Karla", system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--inkt);
+  font: 17px/1.6 var(--sans);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--messing-donker); text-underline-offset: 3px; }
+a:hover { color: var(--inkt); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; margin: 0 0 .5em; }
+h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.15rem; }
+:focus-visible { outline: 2px solid var(--messing); outline-offset: 2px; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 16px; top: 16px; background: var(--wit); padding: 8px 12px; z-index: 10; }
+
+.wrap { max-width: var(--breed); margin: 0 auto; padding: 0 16px; }
+.blok { padding-top: 56px; padding-bottom: 56px; }
+.smal { max-width: 720px; }
+.bovenschrift { text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; color: var(--messing-donker); font-weight: 700; margin: 0 0 12px; }
+.klein { font-size: .88rem; color: var(--inkt-zacht); }
+.leeg { color: var(--inkt-zacht); font-style: italic; }
+.inleiding { max-width: 620px; color: var(--inkt-zacht); }
+
+/* Kop */
+.kop { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papier) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--lijn); }
+.kop-binnen { max-width: var(--breed); margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { white-space: nowrap; display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--inkt); font-family: var(--serif); font-size: 1.35rem; }
+.logo strong { color: var(--messing); font-weight: 600; }
+.logo-vogel { width: 34px; height: 24px; color: var(--messing); }
+.menu { display: flex; gap: 22px; align-items: center; }
+.menu a { color: var(--inkt); text-decoration: none; font-weight: 500; white-space: nowrap; }
+.menu a[aria-current] { color: var(--messing-donker); text-decoration: underline; }
+.mandje-link { display: inline-flex; align-items: center; gap: 6px; }
+.mandje-teller { background: var(--inkt); color: var(--papier); font-size: .75rem; border-radius: 999px; min-width: 20px; height: 20px; padding: 0 6px; display: inline-grid; place-items: center; }
+
+/* Knoppen */
+.knop { display: inline-block; background: var(--inkt); color: var(--papier); border: 1px solid var(--inkt); padding: 12px 22px; border-radius: var(--radius); font: 500 1rem var(--sans); text-decoration: none; cursor: pointer; transition: background .15s, color .15s; }
+.knop:hover { background: var(--messing-donker); border-color: var(--messing-donker); color: var(--wit); }
+.knop-licht { background: transparent; color: var(--inkt); }
+.knop-licht:hover { background: var(--inkt); color: var(--papier); border-color: var(--inkt); }
+.knop-groot { padding: 15px 28px; font-size: 1.05rem; }
+.knop[disabled] { opacity: .5; cursor: default; }
+.knop.is-toegevoegd { background: var(--groen); border-color: var(--groen); }
+.knoppen { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+/* Held */
+.held { max-width: var(--breed); margin: 0 auto; padding: 56px 16px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.held h1 em { color: var(--messing-donker); }
+.held-tekst > p { max-width: 460px; color: var(--inkt-zacht); }
+.held-foto { margin: 0; }
+.held-foto img { border-radius: var(--radius); aspect-ratio: 4/5; object-fit: cover; width: 100%; }
+.held-collage { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; aspect-ratio: 5/4; }
+.held-collage img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+.held-collage img:first-child { grid-row: span 2; }
+
+/* Productraster */
+.blok-kop { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 20px; }
+.raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 28px 20px; }
+.kaart-link { text-decoration: none; color: inherit; display: block; }
+.kaart-foto { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--papier-2); aspect-ratio: 1; }
+.kaart-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.kaart-link:hover .kaart-foto img { transform: scale(1.04); }
+.kaart-tekst { padding-top: 10px; }
+.kaart-tekst h3 { font-size: 1.05rem; margin: 0 0 2px; }
+.kaart-prijs { margin: 0; color: var(--inkt-zacht); font-size: .95rem; }
+.kaart[hidden] { display: none; }
+
+/* SOLD */
+.is-verkocht .kaart-foto img, .galerij-hoofd.is-verkocht img { filter: grayscale(.55) brightness(.85); }
+.lint { position: absolute; top: 14px; left: 14px; padding: 4px 10px; font: 700 .78rem/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; border-radius: 2px; }
+.lint-verkocht { background: var(--rood); color: #fff; transform: rotate(-4deg); box-shadow: 0 2px 6px rgb(0 0 0 / .2); }
+.lint-gereserveerd { background: var(--wit); color: var(--inkt); }
+.lint-groot { font-size: 1.2rem; padding: 8px 18px; top: 24px; left: 24px; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 24px 0 28px; }
+.chip { background: transparent; border: 1px solid var(--lijn); color: var(--inkt); border-radius: 999px; padding: 7px 16px; font: 500 .92rem var(--sans); cursor: pointer; }
+.chip.is-actief { background: var(--inkt); color: var(--papier); border-color: var(--inkt); }
+.schakel { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: .92rem; cursor: pointer; }
+.schakel input { accent-color: var(--messing-donker); width: 18px; height: 18px; }
+
+/* Band */
+.band { background: var(--leisteen); color: var(--papier); }
+.band-binnen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 48px; padding-bottom: 48px; }
+.band-cijfer { font-family: var(--serif); color: var(--messing); font-size: 1.6rem; }
+.band h3 { margin: 4px 0 6px; font-size: 1.3rem; }
+.band p { margin: 0; color: #cfc8bd; }
+
+.atelier-raster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.atelier-raster img { aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+.insta { text-align: center; }
+.insta p { color: var(--inkt-zacht); }
+
+/* Productpagina */
+.kruimel { font-size: .9rem; color: var(--inkt-zacht); margin-bottom: 20px; }
+.product { padding-top: 32px; padding-bottom: 64px; }
+.product-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+.galerij-hoofd { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--papier-2); }
+.galerij-hoofd img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.galerij-duimen { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.duim { border: 2px solid transparent; padding: 0; background: none; border-radius: var(--radius); cursor: pointer; width: 72px; height: 72px; overflow: hidden; }
+.duim img { width: 100%; height: 100%; object-fit: cover; }
+.duim.is-actief { border-color: var(--messing); }
+.product-info { position: sticky; top: 90px; }
+.product-cat { text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; color: var(--messing-donker); font-weight: 700; margin: 0 0 8px; }
+.product-prijs { font-size: 1.4rem; margin: 0 0 24px; }
+.product-tekst { margin-top: 28px; color: var(--inkt-zacht); }
+.product-feiten { list-style: none; padding: 20px 0 0; margin: 20px 0 0; border-top: 1px solid var(--lijn); font-size: .92rem; }
+.product-feiten li::before { content: "◆"; color: var(--messing); font-size: .6rem; margin-right: 10px; vertical-align: 2px; }
+.melding { background: var(--wit); border-left: 3px solid var(--messing); padding: 14px 16px; border-radius: var(--radius); }
+.melding-verkocht { border-left-color: var(--rood); }
+
+/* Over */
+.over-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+.over .groot { font-size: 1.15rem; }
+.over h2 { margin-top: 36px; font-size: 1.4rem; }
+.over-fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+.over-fotos img { aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+.tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li { border: 1px solid var(--lijn); border-radius: 999px; padding: 5px 14px; font-size: .92rem; }
+.stappen li { margin-bottom: 12px; }
+
+/* Mandje */
+.mandje-lijst { list-style: none; padding: 0; margin: 0 0 20px; border-top: 1px solid var(--lijn); }
+.mandje-item { display: grid; grid-template-columns: 80px 1fr auto auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--lijn); }
+.mandje-item img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius); }
+.mandje-item a { color: var(--inkt); text-decoration: none; font-family: var(--serif); font-size: 1.1rem; }
+.mandje-item.is-weg { opacity: .6; }
+.weg-knop { background: none; border: none; color: var(--inkt-zacht); cursor: pointer; font-size: .9rem; text-decoration: underline; }
+.totalen { margin-left: auto; max-width: 320px; }
+.totalen div { display: flex; justify-content: space-between; padding: 4px 0; }
+.totalen .totaal { font-weight: 700; font-size: 1.15rem; border-top: 1px solid var(--lijn); margin-top: 6px; padding-top: 10px; }
+.bestelformulier { margin-top: 40px; max-width: 720px; }
+.velden { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin-bottom: 18px; }
+.bestelformulier label { display: flex; flex-direction: column; gap: 4px; font-weight: 500; font-size: .95rem; }
+.bestelformulier label.breed { grid-column: 1 / -1; margin-bottom: 16px; }
+.bestelformulier input:not([type=radio]), .bestelformulier textarea { font: 1rem var(--sans); padding: 11px 12px; border: 1px solid var(--lijn); border-radius: var(--radius); background: var(--wit); color: var(--inkt); width: 100%; }
+.levering { border: none; padding: 0; margin: 0 0 16px; display: flex; gap: 24px; flex-wrap: wrap; }
+.levering legend { font-weight: 700; margin-bottom: 8px; }
+.bestelformulier .radio { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+.radio input { accent-color: var(--messing-donker); width: 18px; height: 18px; }
+.optioneel { color: var(--inkt-zacht); font-weight: 400; }
+.fout { color: var(--rood); }
+.bedankt { background: var(--wit); padding: 28px; border-radius: var(--radius); border-top: 3px solid var(--groen); max-width: 720px; }
+
+/* Voet */
+.voet { background: var(--papier-2); margin-top: 40px; border-top: 1px solid var(--lijn); }
+.voet-binnen { max-width: var(--breed); margin: 0 auto; padding: 44px 16px 20px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; font-size: .95rem; }
+.voet h2 { font-family: var(--sans); font-size: .8rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700; }
+.voet-logo { font-family: var(--serif); font-size: 1.4rem; margin: 0 0 8px; }
+.voet-logo strong { color: var(--messing); font-weight: 600; }
+.voet-klein { text-align: center; font-size: .82rem; color: var(--inkt-zacht); padding: 12px 16px 24px; margin: 0; }
+
+@media (max-width: 820px) {
+  .held, .product-grid, .over-grid { grid-template-columns: 1fr; gap: 28px; }
+  .held { padding-top: 32px; }
+  .held-collage { order: -1; }
+  .product-info { position: static; }
+  .band-binnen, .voet-binnen { grid-template-columns: 1fr; gap: 22px; }
+  .atelier-raster { grid-template-columns: 1fr 1fr; }
+  .raster { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
+  .velden { grid-template-columns: 1fr; }
+  .schakel { margin-left: 0; width: 100%; }
+  .mandje-item { grid-template-columns: 64px 1fr auto; }
+  .mandje-item img { width: 64px; height: 64px; }
+  .mandje-item .weg-knop { grid-column: 2; justify-self: start; padding: 0; }
+  .menu { gap: 12px; font-size: .92rem; }
+  .kop-binnen { gap: 8px; padding: 12px 16px; }
+  .logo { font-size: 1.15rem; }
+  .logo-vogel { width: 26px; }
+}
+
+[hidden] { display: none !important; }
+@media (max-width: 420px) {
+  .logo-vogel { display: none; }
+  .logo { font-size: 1.1rem; }
+  .menu { gap: 10px; font-size: .88rem; }
+}

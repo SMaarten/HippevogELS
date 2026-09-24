@@ -1,0 +1,80 @@
+# Beheerpaneel (Sveltia CMS) — bereikbaar op /admin/
+backend:
+  name: github
+  repo: SMaarten/hippevogels
+  branch: main
+  commit_messages:
+    create: "Nieuw: {{slug}}"
+    update: "Aangepast: {{slug}}"
+    delete: "Verwijderd: {{slug}}"
+    uploadMedia: "Foto: {{path}}"
+    deleteMedia: "Foto verwijderd: {{path}}"
+
+site_url: https://smaarten.github.io/hippevogels
+media_folder: assets/img/producten
+public_folder: /assets/img/producten
+
+collections:
+  - name: producten
+    label: Creaties
+    label_singular: Creatie
+    description: "Nieuwe juwelen toevoegen of een stuk op VERKOCHT zetten. Na 'Opslaan' staat de wijziging binnen 1–2 minuten online."
+    folder: _producten
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{status}} · {{prijs}}"
+    sortable_fields: [datum, title, status, prijs]
+    view_filters:
+      - { label: Te koop, field: status, pattern: beschikbaar }
+      - { label: Verkocht, field: status, pattern: verkocht }
+      - { label: Zonder prijs, field: prijs, pattern: "^$" }
+    fields:
+      - { label: Naam, name: title, widget: string }
+      - label: Status
+        name: status
+        widget: select
+        default: beschikbaar
+        options:
+          - { label: "Te koop", value: beschikbaar }
+          - { label: "VERKOCHT", value: verkocht }
+          - { label: "Gereserveerd", value: gereserveerd }
+      - { label: "Prijs (€)", name: prijs, widget: number, value_type: float, min: 0, required: false, hint: "Leeg laten = 'Prijs op aanvraag'" }
+      - label: Soort
+        name: categorie
+        widget: select
+        default: oorbellen
+        options: [oorbellen, kettingen, armbanden, ringen, broches, andere]
+      - { label: Hoofdfoto, name: foto, widget: image }
+      - { label: "Extra foto's", name: fotos, widget: list, required: false, field: { label: Foto, name: foto, widget: image } }
+      - { label: Datum, name: datum, widget: datetime, format: "YYYY-MM-DD", time_format: false, date_format: "DD-MM-YYYY" }
+      - { label: "Uitgelicht op homepagina", name: uitgelicht, widget: boolean, default: false, required: false }
+      - { label: "Verbergen (niet tonen op de site)", name: verborgen, widget: boolean, default: false, required: false }
+      - { label: Beschrijving, name: body, widget: markdown }
+
+  - name: site
+    label: Instellingen
+    files:
+      - name: winkel
+        label: Winkelgegevens
+        file: _data/winkel.yml
+        fields:
+          - { label: E-mail, name: email, widget: string }
+          - { label: "Instagram-naam", name: instagram, widget: string }
+          - { label: Naam eigenaar, name: eigenaar, widget: string }
+          - { label: IBAN, name: iban, widget: string, required: false, hint: "Verschijnt na een bestelling. Leeg = betaalgegevens volgen per mail." }
+          - { label: Rekeninghouder, name: rekeninghouder, widget: string, required: false }
+          - { label: "Verzendkosten (€)", name: verzendkosten, widget: number, value_type: float }
+          - { label: "Gratis verzending vanaf (€, 0 = nooit)", name: gratis_verzending_vanaf, widget: number, value_type: float }
+          - { label: Afhalen mogelijk, name: afhalen_mogelijk, widget: boolean }
+          - { label: Afhaaladres, name: afhaaladres, widget: string, required: false }
+          - { label: "Formspree ID", name: formspree_id, widget: string, required: false, hint: "Optioneel, bv. 'xyzabcd'. Leeg = bestelling via e-mailprogramma van de klant." }
+          - { label: "Intro homepagina", name: intro, widget: text }
+          - { label: "Over mij", name: over, widget: text }
+      - name: atelier
+        label: "Atelier-foto's"
+        file: _data/atelier.yml
+        media_folder: /assets/img/atelier
+        public_folder: /assets/img/atelier
+        fields:
+          - { label: "Foto's (de eerste komt groot op de homepagina)", name: fotos, widget: list, field: { label: Foto, name: foto, widget: image } }

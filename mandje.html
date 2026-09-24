@@ -1,0 +1,33 @@
+---
+title: Mandje
+permalink: /mandje/
+---
+<div class="wrap blok mandje" data-mandje-pagina>
+  <h1>Je mandje</h1>
+  <div data-mandje-inhoud><p class="leeg">Even laden…</p></div>
+
+  <form class="bestelformulier" data-bestelformulier hidden>
+    <h2>Je gegevens</h2>
+    <div class="velden">
+      <label>Naam<input name="naam" required autocomplete="name"></label>
+      <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
+      <label>Telefoon <span class="optioneel">(optioneel)</span><input name="telefoon" type="tel" autocomplete="tel"></label>
+    </div>
+    <fieldset class="levering">
+      <legend>Levering</legend>
+      <label class="radio"><input type="radio" name="levering" value="verzenden" checked> Verzenden</label>
+      {% if site.data.winkel.afhalen_mogelijk %}<label class="radio"><input type="radio" name="levering" value="afhalen"> Afhalen ({{ site.data.winkel.afhaaladres }})</label>{% endif %}
+    </fieldset>
+    <div class="velden" data-adres>
+      <label class="breed">Straat en huisnummer<input name="straat" autocomplete="street-address"></label>
+      <label>Postcode<input name="postcode" autocomplete="postal-code"></label>
+      <label>Gemeente<input name="gemeente" autocomplete="address-level2"></label>
+    </div>
+    <label class="breed">Opmerking <span class="optioneel">(bv. cadeauverpakking)</span><textarea name="opmerking" rows="3"></textarea></label>
+    <p class="klein">Na je bestelling bevestigt Els dat je stuk nog beschikbaar is en krijg je de betaalgegevens. <a href="{{ '/bestellen/' | relative_url }}">Meer uitleg</a>.</p>
+    <button class="knop knop-groot" type="submit">Bestelling versturen</button>
+    <p class="fout" data-fout hidden></p>
+  </form>
+
+  <div class="bedankt" data-bedankt hidden></div>
+</div>

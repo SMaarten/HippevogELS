@@ -1,0 +1,21 @@
+---
+title: Winkel
+permalink: /winkel/
+---
+{%- assign zichtbaar = site.producten | where_exp: "p", "p.verborgen != true" | sort: "datum" | reverse -%}
+{%- assign cats = zichtbaar | map: "categorie" | uniq | sort -%}
+<div class="wrap blok">
+  <h1>Winkel</h1>
+  <p class="inleiding">Alle stukken zijn handgemaakt en uniek. Wat verkocht is, blijft hier staan als inspiratie — vraag gerust naar iets gelijkaardigs.</p>
+
+  <div class="filters" role="group" aria-label="Filter op soort">
+    <button type="button" class="chip is-actief" data-filter="alles">Alles</button>
+    {% for c in cats %}{% if c %}<button type="button" class="chip" data-filter="{{ c }}">{{ c | capitalize }}</button>{% endif %}{% endfor %}
+    <label class="schakel"><input type="checkbox" data-alleen-te-koop> Enkel beschikbaar</label>
+  </div>
+
+  <div class="raster" data-raster>
+    {% for p in zichtbaar %}{% include product-kaart.html product=p %}{% endfor %}
+  </div>
+  <p class="leeg" data-leeg hidden>Geen stukken gevonden in deze selectie.</p>
+</div>

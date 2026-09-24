@@ -1,0 +1,25 @@
+---
+title: Over Els
+permalink: /over/
+---
+{%- assign atelier = site.data.atelier.fotos | default: empty -%}
+<div class="wrap blok over">
+  <div class="over-grid">
+    <div>
+      <p class="bovenschrift">Het atelier</p>
+      <h1>Hallo, ik ben Els</h1>
+      <p class="groot">{{ site.data.winkel.over }}</p>
+      <h2>Materialen</h2>
+      <ul class="tags">
+        <li>Messing</li><li>Koper</li><li>Email</li><li>Krimpfolie</li><li>Gedroogde bloemen</li><li>Hypoallergene haakjes</li>
+      </ul>
+      <h2>Iets op maat?</h2>
+      <p>Zag je een stuk dat al verkocht is, of heb je een idee voor een cadeau? <a href="mailto:{{ site.data.winkel.email }}">Mail me</a> of stuur een berichtje via <a href="https://www.instagram.com/{{ site.data.winkel.instagram }}/" rel="noopener">Instagram</a>.</p>
+    </div>
+    {% if atelier.size > 0 %}
+    <div class="over-fotos">
+      {% for f in atelier limit: 4 %}<img src="{{ f | relative_url }}" alt="Uit het atelier" loading="lazy">{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>

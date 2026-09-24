@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /producten.json
+---
+{%- assign lijst = site.producten | where_exp: "p", "p.verborgen != true" -%}
+{ {% for p in lijst %}"{{ p.slug }}": {"titel": {{ p.title | jsonify }}, "prijs": {{ p.prijs | default: 0 }}, "status": {{ p.status | default: "beschikbaar" | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %} }

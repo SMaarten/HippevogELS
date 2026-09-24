@@ -1,0 +1,28 @@
+# Winkelgegevens — aan te passen via /admin → Instellingen
+email: els@hippevogels.be
+instagram: hippevogels
+eigenaar: Els Vernaeve
+
+# Betaling via overschrijving (leeg laten om te verbergen)
+iban: ""
+rekeninghouder: Els Vernaeve
+
+# Verzending (in euro)
+verzendkosten: 4.5
+gratis_verzending_vanaf: 60
+afhalen_mogelijk: true
+afhaaladres: "Op afspraak"
+
+# Optioneel: Formspree-formulier (https://formspree.io) zodat bestellingen
+# rechtstreeks als e-mail binnenkomen. Leeg = bestelling opent het e-mailprogramma van de klant.
+formspree_id: ""
+
+intro: >-
+  Juwelen met een verhaal. Elk stuk wordt met de hand gezaagd, gevijld,
+  gehamerd en gepolijst in mijn atelier. Geen twee zijn hetzelfde.
+over: >-
+  Ik ben Els, en ik maak juwelen die een beetje eigenwijs zijn — net als hippe
+  vogels. Ik werk vooral met messing en koper, die ik zaag, hamer en een
+  eigen textuur geef. Soms komt er email bij, krimpfolie of een gedroogd
+  bloemetje uit de tuin. Mijn oorbellen zijn hypoallergeen. Elk stuk is uniek:
+  is het verkocht, dan is het echt weg.

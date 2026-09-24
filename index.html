@@ -1,0 +1,63 @@
+---
+title: Home
+---
+{%- assign atelier = site.data.atelier.fotos | default: empty -%}
+{%- assign zichtbaar = site.producten | where_exp: "p", "p.verborgen != true" | sort: "datum" | reverse -%}
+{%- assign te_koop = zichtbaar | where_exp: "p", "p.status != 'verkocht'" -%}
+{%- assign uitgelicht = zichtbaar | where: "uitgelicht", true -%}
+{%- if uitgelicht.size == 0 -%}{%- assign uitgelicht = te_koop -%}{%- endif -%}
+
+<section class="held">
+  <div class="held-tekst">
+    <p class="bovenschrift">Handgemaakte juwelen</p>
+    <h1>Juwelen voor<br><em>hippe vogels</em></h1>
+    <p>{{ site.data.winkel.intro }}</p>
+    <p class="knoppen">
+      <a class="knop" href="{{ '/winkel/' | relative_url }}">Naar de winkel</a>
+      <a class="knop knop-licht" href="{{ '/over/' | relative_url }}">Het atelier</a>
+    </p>
+  </div>
+  {% if atelier.size > 0 %}
+  <figure class="held-foto">
+    <img src="{{ atelier[0] | relative_url }}" alt="Els aan het werk in het atelier" width="900" height="1100">
+  </figure>
+  {% else %}
+  <div class="held-collage" aria-hidden="true">
+    {% for p in te_koop limit: 3 %}<img src="{{ p.foto | relative_url }}" alt="" width="600" height="600">{% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section class="wrap blok">
+  <div class="blok-kop">
+    <h2>Nieuw in de winkel</h2>
+    <a href="{{ '/winkel/' | relative_url }}">Alles bekijken →</a>
+  </div>
+  <div class="raster">
+    {% for p in uitgelicht limit: 8 %}{% include product-kaart.html product=p %}{% endfor %}
+  </div>
+  {% if uitgelicht.size == 0 %}<p class="leeg">Binnenkort verschijnen hier nieuwe creaties.</p>{% endif %}
+</section>
+
+<section class="band">
+  <div class="wrap band-binnen">
+    <div class="band-item"><span class="band-cijfer">1</span><h3>Uniek</h3><p>Elk juweel bestaat maar één keer. Verkocht is verkocht.</p></div>
+    <div class="band-item"><span class="band-cijfer">2</span><h3>Met de hand</h3><p>Gezaagd, gehamerd en gepolijst in messing en koper.</p></div>
+    <div class="band-item"><span class="band-cijfer">3</span><h3>Hypoallergeen</h3><p>Oorhaakjes die gevoelige oren niet irriteren.</p></div>
+  </div>
+</section>
+
+{% if atelier.size > 1 %}
+<section class="wrap blok atelier">
+  <div class="blok-kop"><h2>Uit het atelier</h2></div>
+  <div class="atelier-raster">
+    {% for f in atelier offset: 1 limit: 4 %}<img src="{{ f | relative_url }}" alt="Uit het atelier van Hippe vogELS" loading="lazy">{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="wrap blok insta">
+  <h2>Volg het maakproces</h2>
+  <p>Nieuwe stukken verschijnen eerst op Instagram.</p>
+  <a class="knop knop-licht" href="https://www.instagram.com/{{ site.data.winkel.instagram }}/" rel="noopener">@{{ site.data.winkel.instagram }}</a>
+</section>

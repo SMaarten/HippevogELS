@@ -1,0 +1,29 @@
+# Hippe vogELS — handgemaakte juwelen van Els Vernaeve
+title: Hippe vogELS
+tagline: Handgemaakte juwelen
+description: >-
+  Unieke, handgemaakte juwelen in messing en koper, met email, krimpfolie en
+  gedroogde bloemen. Elk stuk is een unicum — gemaakt door Els Vernaeve.
+lang: nl-BE
+
+# Voor een projectsite op https://<gebruiker>.github.io/<repo>/ moet baseurl "/<repo>" zijn.
+# Met een eigen domein (bv. www.hippevogels.be) laat je baseurl leeg.
+url: ""
+baseurl: ""
+
+collections:
+  producten:
+    output: true
+    permalink: /winkel/:name/
+
+defaults:
+  - scope: { path: "", type: producten }
+    values: { layout: product }
+  - scope: { path: "" }
+    values: { layout: default }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .pages.yml
