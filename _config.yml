@@ -8,7 +8,7 @@ lang: nl-BE
 
 # Voor een projectsite op https://<gebruiker>.github.io/<repo>/ moet baseurl "/<repo>" zijn.
 # Met een eigen domein (bv. www.hippevogels.be) laat je baseurl leeg.
-url: ""
+url: "https://www.hippevogels.be"
 baseurl: ""
 
 collections:

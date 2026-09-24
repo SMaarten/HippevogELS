@@ -1,7 +1,7 @@
 # Beheerpaneel (Sveltia CMS) — bereikbaar op /admin/
 backend:
   name: github
-  repo: SMaarten/hippevogels
+  repo: SMaarten/HippevogELS
   branch: main
   commit_messages:
     create: "Nieuw: {{slug}}"
@@ -10,7 +10,7 @@ backend:
     uploadMedia: "Foto: {{path}}"
     deleteMedia: "Foto verwijderd: {{path}}"
 
-site_url: https://smaarten.github.io/hippevogels
+site_url: https://www.hippevogels.be
 media_folder: assets/img/producten
 public_folder: /assets/img/producten
 
